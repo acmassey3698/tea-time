@@ -8,7 +8,9 @@ class Api::V1::SubscriptionsController < ApplicationController
       frequency: params[:frequency]
      )
      if subscription.save
-       render json: SubscriptionSerializer.one_sub(subscription), status: 201
+       render json: SubscriptionSerializer.one_sub(subscription), status: :created
+     else
+       render json: { errors: subscription.errors.full_messages }, status: :unprocessable_entity
      end
   end
 end
