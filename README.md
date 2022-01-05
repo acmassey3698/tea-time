@@ -37,10 +37,10 @@ rails s
   * Method: POST
   * Endpoint: `/api/v1/subscription`
   * Required Params: 
-    * customer_email: <customer email>
-    * tea_name: <tea name>
-    * frequency <"weekly", "monthly", or "yearly">
-  * Example Request: `http://localhost:3000/api/v1/subscriptions?customer_email=andrew@andrew.com&tea_name=yorkshire&frequency=monthly
+    * customer_email: customer email
+    * tea_name: tea name
+    * frequency "weekly", "monthly", or "yearly"
+  * Example Request: `http://localhost:3000/api/v1/subscriptions?customer_email=andrew@andrew.com&tea_name=yorkshire&frequency=monthly`
   
   * Example Response: 
   ```
