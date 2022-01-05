@@ -31,7 +31,66 @@ RSpec.describe 'Create a new subscription' do
   end
 
   describe 'sad path/edge case' do
+    it 'does not create a subscription if the input does not match a customer email' do
+      create_list(:customer, 3)
+      create_list(:tea, 5)
 
+      customer_email = 'fnoawonoenr'
+      tea_name = Tea.first.name
+
+      post '/api/v1/subscriptions', params: {
+        customer_email: customer_email,
+        tea_name: tea_name,
+        frequency: "monthly"
+      }
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(422)
+
+      response_body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response_body[:errors].first).to eq("Customer must exist")
+    end
+
+    it 'does not create a subscription if the input does not match a tea name' do
+      create_list(:customer, 3)
+      create_list(:tea, 5)
+
+      customer_email = Customer.first.email
+      tea_name = 'nownonweorn'
+
+      post '/api/v1/subscriptions', params: {
+        customer_email: customer_email,
+        tea_name: tea_name,
+        frequency: "monthly"
+      }
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(422)
+
+      response_body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response_body[:errors].first).to eq("Tea must exist")
+    end
+
+    it 'does not create a subscription when the frequency is omitted' do
+      create_list(:customer, 3)
+      create_list(:tea, 5)
+
+      customer_email = Customer.first.email
+      tea_name = Tea.first.name
+
+      post '/api/v1/subscriptions', params: {
+        customer_email: customer_email,
+        tea_name: tea_name
+      }
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(422)
+
+      response_body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response_body[:errors].first).to eq("Frequency can't be blank")
+    end
   end
-
 end
