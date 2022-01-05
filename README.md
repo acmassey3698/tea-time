@@ -33,6 +33,7 @@ rails s
 
 <details>
   <summary>Create a New Subscription</summary>
+  
   * Method: POST
   * Endpoint: `/api/v1/subscription`
   * Required Params: 
