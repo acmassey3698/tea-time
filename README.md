@@ -3,6 +3,10 @@
 ### Description 
   Tea Time is a rails API created for consumption by a front-end team. Tea has a variety of endpoints that provide functionality for a Tea subscription service.
   
+### Database Schema
+
+![Screen Shot 2022-01-07 at 10 26 58 AM](https://user-images.githubusercontent.com/75844153/148565995-038df85f-c237-4b1b-ac23-5d5929246cf5.png)
+  
 ### Ruby/Rails Versions
  - Ruby: 2.7.2
  - Rails: 5.2.6
