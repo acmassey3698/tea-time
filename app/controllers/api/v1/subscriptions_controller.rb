@@ -13,4 +13,21 @@ class Api::V1::SubscriptionsController < ApplicationController
        render json: { errors: subscription.errors.full_messages }, status: :unprocessable_entity
      end
   end
+
+  def update
+    subscription = Subscription.find(params[:id])
+
+    if subscription.update(subscription_params)
+      render json: SubscriptionSerializer.one_sub(subscription), status: :accepted
+    else
+      render json: { errors: subscription.errors.full_messages }, status: :bad_request
+    end
+  end
+
+
+  private
+
+  def subscription_params
+    params.permit(:status)
+  end
 end
