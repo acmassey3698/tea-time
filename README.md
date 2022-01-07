@@ -67,7 +67,7 @@ rails s
   * Method: PATCH
   * Endpoint: `/api/v1/subscriptions/:id`
   * Required Params: status: "cancelled"
-  * Example Request: `http://localhost:3000/api/v1/subscriptions/1?status=cancelled
+  * Example Request: `http://localhost:3000/api/v1/subscriptions/1?status=cancelled`
   
   * Example Response: 
   
