@@ -49,14 +49,82 @@ rails s
       id: 1,
       type: "subscription,
       attributes: {
-        customer_email: "andrew@andrew.com,
-        tea_name: "yorkshire,
+        customer_email: "andrew@andrew.com",
+        tea_name: "yorkshire",
         price: 10.0,
         status: "active"
-        frequency: "monthly
+        frequency: "monthly"
       }
     }
   }
   ```
   
+</details>
+
+<details>
+  <summary>Cancel a Subscription</summary>
+  
+  * Method: PATCH
+  * Endpoint: `/api/v1/subscriptions/:id`
+  * Required Params: status: "cancelled"
+  * Example Request: `http://localhost:3000/api/v1/subscriptions/1?status=cancelled
+  
+  * Example Response: 
+  
+  ```
+  {
+    data: {
+      id: 1
+      type: subscription
+      attributes: {
+        customer_email: "andrew@amdrew.com",
+        tea_name: "yorkshire",
+        price: 10.0,
+        status: "cancelled",
+        frequency: "monthly"
+      }
+    }
+  } 
+  ```
+  
+</details>
+
+<details>
+  <summary>All Subscriptions for a Customer</summary>
+  
+  * Method: GET
+  * Endpoint: `/api/v1/customers/:id/subscriptions`
+  * Example Request: `http://localhost:3000/api/v1/customers/1/subscriptions`
+  
+  * Example Response: 
+  
+  ```
+  {
+    data: [
+      {
+        id: 1,
+        type: "subscription",
+        attributes: {
+          price: 10.0,
+          status: "active",
+          frequency: "yearly",
+          tea_id: 1,
+          customer_id: 1
+        }
+      },
+      {
+        id: 3,
+        type: "subscription",
+        attributes: {
+          price: 10.0,
+          status: "cancelled",
+          frequency: "yearly",
+          tea_id: 5,
+          customer_id: 1
+        }
+      }  
+    ] 
+  }
+  
+  ```
 </details>
